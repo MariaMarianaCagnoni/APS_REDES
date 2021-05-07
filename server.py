@@ -1,7 +1,7 @@
 import socket         #socket for the comunication.
 import threading    #alloy run multiple tasks  at the same time
 
-HOST = '0.0.0.0'
+HOST = '127.0.0.1'
 PORT = 9090
 
 server = socket.socket(socket.AF_INET,socket.SOCK_STREAM)        #AF_INET = IPV4   and SOCK_STREAM = TCP.

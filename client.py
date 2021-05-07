@@ -4,7 +4,7 @@ import tkinter
 import tkinter.scrolledtext
 from tkinter import simpledialog
 
-HOST = '0.0.0.0'
+HOST = '127.0.0.1'
 PORT = 9090
 
 class Client:
