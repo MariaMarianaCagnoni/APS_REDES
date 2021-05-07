@@ -1,16 +1,16 @@
 import socket         #socket for the comunication.
 import threading    #alloy run multiple tasks  at the same time
 
-HOST = '192.168.0.1'
-PORT = 555555
+HOST = '0.0.0.0'
+PORT = 9090
 
 server = socket.socket(socket.AF_INET,socket.SOCK_STREAM)        #AF_INET = IPV4   and SOCK_STREAM = TCP.
-server.bind((HOST,PORT))
+server.bind((HOST, PORT))
 
 
 server.listen()
 clients = []                    #empty list for clients
-nickNames = []                  #empty list for nickNames
+nicknames = []                  #empty list for nickNames
 
 def broadcast(message):
     for client in clients:
@@ -24,6 +24,12 @@ def handle(client):
             broadcast(message)
         except:
             index = clients.index(client)
+            clients.remove(client)
+            client.close()                                #close the connetion
+            nickname = nicknames[index]
+            nicknames.remove(nickname)
+            break
+
 
 
 
@@ -44,6 +50,5 @@ def receive():
         thread = threading.Thread(target = handle , args =(client,))
         thread.start()
 
-
-
-
+print('server is running')
+receive()
